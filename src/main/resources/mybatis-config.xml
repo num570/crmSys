@@ -9,7 +9,7 @@
   <typeAliases>
   
   	<package name="com.bjpowernode.settings.domain"/>
-  	
+    <package name="com.bjpowernode.workbench.domain"/>
   
   </typeAliases>
   
@@ -27,9 +27,8 @@
   
  
   <mappers>
-   
       <package name="com.bjpowernode.settings.dao"/>
-    
+      <package name="com.bjpowernode.workbench.dao"/>
   </mappers>
 </configuration>
 

@@ -1,6 +1,5 @@
 package com.bjpowernode.settings.web.controller;
 
-import com.bjpowernode.exception.LoginException;
 import com.bjpowernode.settings.domain.User;
 import com.bjpowernode.settings.service.UserService;
 import com.bjpowernode.settings.service.impl.UserServiceImpl;

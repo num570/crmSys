@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+          http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
 
     <filter>
         <filter-name>EncodingFilter</filter-name>
@@ -22,13 +26,24 @@
     </filter-mapping>
 
     <servlet>
-    <servlet-name>UserController</servlet-name>
-    <servlet-class>com.bjpowernode.settings.web.controller.UserController</servlet-class>
- </servlet>
- <servlet-mapping>
-    <servlet-name>UserController</servlet-name>
-    <url-pattern>/settings/user/login.do</url-pattern>
- </servlet-mapping>
+        <servlet-name>UserController</servlet-name>
+        <servlet-class>com.bjpowernode.settings.web.controller.UserController</servlet-class>
+     </servlet>
+     <servlet-mapping>
+        <servlet-name>UserController</servlet-name>
+        <url-pattern>/settings/user/login.do</url-pattern>
+     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ActivityController</servlet-name>
+        <servlet-class>com.bjpowernode.workbench.web.controller.ActivityController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActivityController</servlet-name>
+        <url-pattern>/workbench/activity/getUserList.do</url-pattern>
+        <url-pattern>/workbench/activity/save.do</url-pattern>
+        <url-pattern>/workbench/activity/pageList.do</url-pattern>
+    </servlet-mapping>
 
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
