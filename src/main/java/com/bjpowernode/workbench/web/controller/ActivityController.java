@@ -1,6 +1,8 @@
 package com.bjpowernode.workbench.web.controller;
 
 import com.bjpowernode.settings.domain.User;
+import com.bjpowernode.settings.service.UserService;
+import com.bjpowernode.settings.service.impl.UserServiceImpl;
 import com.bjpowernode.utils.DateTimeUtil;
 import com.bjpowernode.utils.PrintJson;
 import com.bjpowernode.utils.ServiceFactory;
@@ -31,7 +33,56 @@ public class ActivityController extends HttpServlet {
             save(request,response);
         }else if("/workbench/activity/pageList.do".equals(path)){
             pageList(request,response);
+        }else if("/workbench/activity/delete.do".equals(path)){
+            delete(request,response);
+        }else if("/workbench/activity/getUserListAndActivity.do".equals(path)){
+            getUserListAndActivity(request,response);
+        }else if("/workbench/activity/update.do".equals(path)){
+            update(request,response);
         }
+    }
+
+    private void update(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        String owner = request.getParameter("owner");
+        String name = request.getParameter("name");
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
+        String cost = request.getParameter("cost");
+        String description = request.getParameter("description");
+        String editTime = DateTimeUtil.getSysTime();
+        String editBy = ((User)request.getSession().getAttribute("user")).getName();
+
+        Activity a = new Activity();
+        a.setId(id);
+        a.setEditTime(editTime);
+        a.setEditBy(editBy);
+        a.setCost(cost);
+        a.setStartDate(startDate);
+        a.setOwner(owner);
+        a.setName(name);
+        a.setEndDate(endDate);
+        a.setDescription(description);
+        ActivityService as = (ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
+
+        Boolean flag = as.update(a);
+        PrintJson.printJsonFlag(response,flag);
+    }
+
+    private void getUserListAndActivity(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        ActivityService as = (ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
+        Map<String,Object> map = as.getUserListAndActivity(id);
+        PrintJson.printJsonObj(response,map);
+    }
+
+    private void delete(HttpServletRequest request, HttpServletResponse response) {
+
+        String[] ids = request.getParameterValues("id");
+        ActivityService as = (ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
+        boolean flag = as.delete(ids);
+        PrintJson.printJsonFlag(response,flag);
+
     }
 
     private void pageList(HttpServletRequest request, HttpServletResponse response) {
