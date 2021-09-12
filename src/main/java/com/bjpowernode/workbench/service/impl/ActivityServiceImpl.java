@@ -7,6 +7,7 @@ import com.bjpowernode.vo.PaginationVO;
 import com.bjpowernode.workbench.dao.ActivityDao;
 import com.bjpowernode.workbench.dao.ActivityRemarkDao;
 import com.bjpowernode.workbench.domain.Activity;
+import com.bjpowernode.workbench.domain.ActivityRemark;
 import com.bjpowernode.workbench.service.ActivityService;
 
 import java.util.HashMap;
@@ -83,6 +84,48 @@ public class ActivityServiceImpl implements ActivityService {
     public Boolean update(Activity a) {
         Boolean flag = true;
         int count = activityDao.update(a);
+        if(count != 1){
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Override
+    public Activity detail(String id) {
+        Activity a = activityDao.detail(id);
+        return a;
+    }
+
+    @Override
+    public List<ActivityRemark> getRemarkListByAid(String id) {
+        List<ActivityRemark> arList = activityRemarkDao.getRemarkListByAid(id);
+        return arList;
+    }
+
+    @Override
+    public Boolean deleteById(String id) {
+        Boolean flag = true;
+        int count = activityRemarkDao.deleteById(id);
+        if(count != 1){
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Override
+    public Boolean saveRemark(ActivityRemark ar) {
+        Boolean flag = true;
+        int count = activityRemarkDao.saveRemark(ar);
+        if(count != 1){
+            flag = false;
+        }
+        return flag;
+    }
+
+    @Override
+    public Boolean updateRemark(ActivityRemark ar) {
+        Boolean flag = true;
+        int count = activityRemarkDao.updateRemark(ar);
         if(count != 1){
             flag = false;
         }

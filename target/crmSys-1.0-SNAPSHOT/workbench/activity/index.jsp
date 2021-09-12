@@ -86,13 +86,11 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
 		//查询活动
 		$("#searchBtn").click(function () {
-			alert("adad")
 			//点击查询按钮的时候，我们应该将搜索框中的信息保存起来,保存到隐藏域中
 			$("#hidden-name").val($.trim($("#search-name").val()))
 			$("#hidden-owner").val($.trim($("#search-owner").val()))
 			$("#hidden-startDate").val($.trim($("#search-startDate").val()))
 			$("#hidden-endDate").val($.trim($("#search-endDate").val()))
-			alert($("#hidden-name").val())
 			pageList(1,$("#activityPage").bs_pagination('getOption', 'rowsPerPage'));
 		});
 
@@ -233,7 +231,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				$.each(data.dataList,function (i,n) {
 					html += '<tr class="active">'
 					html += '<td><input type="checkbox" name="xz" value="'+n.id+'"/></td>';
-					html += '<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href=\'workbench/activity/detail.jsp\';">'+n.name+'</a></td>';
+					html += '<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href=\'workbench/activity/detail.do?id='+n.id+'\';">'+n.name+'</a></td>';
 					html += '<td>'+n.owner+'</td>';
 					html += '<td>'+n.startDate+'</td>';
 					html += '<td>'+n.endDate+'</td>';
